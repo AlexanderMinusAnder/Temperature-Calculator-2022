@@ -32,10 +32,9 @@ app.post("/temperature", async (req, res)=> {
 	const ville = req.body.city
 
 	try {
-		console.log(ville);
-		
 		const geoloc = await geoCode(ville);
 		const temp = await forecast(geoloc);
+		console.log(temp)
 		console.log(`La température à ${ville} est de ${temp}°C.`);
 
 		const result = {
@@ -56,19 +55,23 @@ app.get("/about", async (req, res)=> {
 })
 
 app.post("/suggestion", async (req, res) => {
-	const API_KEY = process.env.API_SUGGESTION;
+	const API_KEY = process.env.API_WEATHER_KEY;
+	"https://api.mapbox.com/geocoding/v5/mapbox.places/${req.body.city}.json?access_token=${API_KEY}&limit=5"
 
 	if(req.body.city != "") {
-		const { data } = await axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${req.body.city}.json?access_token=${API_KEY}&limit=5`);
+		const { data } = await axios(`https://api.openweathermap.org/geo/1.0/direct?q=${req.body.city}&limit=5&appid=${API_KEY}`);
 
-		const result = {
-			"result" : data.features.map(place => {
-				return place.place_name
-			})
+		const suggestions = data
+  		.filter(city => {
+    		return city.country === "FR";
+  		})
+  		.map(city => {
+    		return {
+      			name: city.name,
+				state: city.state
+    		};
+  		});
 
-		}
-
-		console.log(result)
-		res.send(result)
+		res.send(suggestions)
 	} 
 })

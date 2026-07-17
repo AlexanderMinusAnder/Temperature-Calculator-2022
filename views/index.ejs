@@ -23,15 +23,17 @@
     <footer>
 
     </footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
     const r = async data => {
-        const { data: { result } } = await axios.post("/suggestion", { city: data });
-        console.log(result);
+        const suggestions = await axios.post("/suggestion", { city: data });
+        console.log(suggestions.data);
         document.getElementById("suggestion").innerHTML = "";
-        result.forEach(city => {
+
+        suggestions.data.forEach(city => {
         document.getElementById("suggestion").innerHTML += `
             <li>
-            <p>${city}</p>
+            <p>${city.name} - ${city.state}</p>
             </li>
             `;
             });
@@ -67,10 +69,8 @@
     bar.addEventListener("paste", ()=> {
         r(document.getElementById("bar").value);
     })
-    
 
     </script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 
 </html>

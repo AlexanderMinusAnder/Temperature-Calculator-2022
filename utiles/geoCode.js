@@ -10,7 +10,7 @@ const geoCode = async (query) => {
     const {
       data: { data },
     } = await axios(
-      `http://api.positionstack.com/v1/forward?access_key=${API_KEY}&query=${encodeURIComponent(query)}`
+      `https://api.positionstack.com/v1/forward?access_key=${API_KEY}&query=${encodeURIComponent(query)}`
       
     );
 
@@ -24,6 +24,7 @@ const geoCode = async (query) => {
 
   } catch (err) {
     console.log("Error : " + err.message);
+    throw err;
   }
 };
 module.exports = geoCode;

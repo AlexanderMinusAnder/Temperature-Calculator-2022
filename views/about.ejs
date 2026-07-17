@@ -10,15 +10,14 @@
 <body>
     <%- include('partials/header') %>
 
-    <p>This website was developped by three french back-end developper students.</p>
+    <p>Cette applciation a été développé par 3 étudiants en développement Back-End.</p>
 
-    <p>Its use is to give the user the temperature of a previoulsy entered city.</p>
+    <p>Elle permet de récupérer la température d'une ville à partir d'une donnée rentrée par l'utilisateur.</p>
     
-    <p>This website sends requests to three APIs :</p>
+    <p>Ce site fait des requêtes à deux APIs:</p>
     <ul>
-        <li><a href="https://positionstack.com/">PositionStack</a> to get the longitude and latitude of the city.</li>
-        <li><a href="https://openweathermap.org/">OpenWeatherMap</a> to get the temperature based on the longitude and latitude provided by PositionStack.</li>
-        <li><a href="https://docs.mapbox.com/playground/geocoding/">Mapbox</a> to display a list of propositions based on the user's input.</li>
+        <li><a href="https://positionstack.com/">PositionStack</a>: Pour récupérer la longitude et la latitude d'une ville</li>
+        <li><a href="https://openweathermap.org/">OpenWeatherMap</a>: Pour récupérer la rempérature basée sur la longitude et la latitude récupérées via PositionStack, ainsi que d'afficher la liste de suggestions de villes en fonction de l'entrée de l'utilisateur.</li>
     </ul>
 </body>
 </html>
