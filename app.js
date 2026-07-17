@@ -56,7 +56,6 @@ app.get("/about", async (req, res)=> {
 
 app.post("/suggestion", async (req, res) => {
 	const API_KEY = process.env.API_WEATHER_KEY;
-	"https://api.mapbox.com/geocoding/v5/mapbox.places/${req.body.city}.json?access_token=${API_KEY}&limit=5"
 
 	if(req.body.city != "") {
 		const { data } = await axios(`https://api.openweathermap.org/geo/1.0/direct?q=${req.body.city}&limit=5&appid=${API_KEY}`);
@@ -72,6 +71,10 @@ app.post("/suggestion", async (req, res) => {
     		};
   		});
 
-		res.send(suggestions)
+		const uniqueSuggestions = suggestions.filter((city, index) => {
+			return suggestions.findIndex(c => c.state === city.state) === index;
+		});
+
+		res.send(uniqueSuggestions)
 	} 
 })
