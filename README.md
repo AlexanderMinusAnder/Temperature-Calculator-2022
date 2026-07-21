@@ -5,7 +5,7 @@
 ### 1. Clone the repository
 To clone this repository using Git, use
 ```bash
-git clone https://github.com/Mobzaaz/cityWeather.git
+git clone https://github.com/AlexanderMinusAnder/cityWeather.git
 ```
 
 If you aren't familiar with Git, go to the top-left of this page and click on the green button named "Clone or Download".
