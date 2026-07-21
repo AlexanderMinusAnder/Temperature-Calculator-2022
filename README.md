@@ -29,7 +29,7 @@ npm i
 Running this script is straight forward. Simply type this in your terminal session :
 
 ```bash
-npm start city
+npm run city
 ```
 
 The server will now be opened on port 3001.
